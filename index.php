@@ -10,16 +10,17 @@ $parts = explode('/', $_SERVER['REQUEST_URI']);
 $ctrlRequest = !empty($parts[1]) ? $parts[1] . 'Controller' : 'IndexController';
 $ctrlClassName = '\App\Controllers\\' . ucfirst($ctrlRequest);
 
+if (!file_exists(__DIR__ . '/App/Controllers/' . $ctrlRequest . '.php')){
+    $ctrl = new \App\Controllers\IndexController();
+    $ctrl->actionPage404();
+    die;
+}
+
 $ctrl = new $ctrlClassName;
 
 $actRequest = !empty($parts[2]) ? $parts[2] : 'Index';
 
 $idRequest = !empty($parts[3]) ? $parts[3] : null;
 
-
-try {
-    $actMethodName = $ctrl->action($actRequest);
-    $ctrl->$actMethodName($idRequest);
-} catch (Exception $e){
-    dd(111);
-}
+$actMethodName = $ctrl->action($actRequest);
+$ctrl->$actMethodName($idRequest);

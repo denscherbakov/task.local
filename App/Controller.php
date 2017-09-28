@@ -30,6 +30,11 @@ abstract class Controller
         $data['product_id'] = $this->validate( $_POST['product']);
         $data['user_id'] = User::getId();
 
+        if ($model == 'rating') {
+            $data['rate'] = $_POST['rating'];
+            unset($data['rating']);
+        }
+
         if ($class::check($data['product_id'], User::getId())){
             $object->update($data);
         } else {

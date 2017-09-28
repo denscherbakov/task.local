@@ -5,6 +5,9 @@
 </head>
 <body>
 <div class="container">
+
+    <a href="/product/">Back</a>
+
     <?php if ($this->product): ?>
         <table class="table table-bordered table-hover product-table">
             <tr>

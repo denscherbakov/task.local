@@ -19,15 +19,25 @@ class ProductController extends Controller
         if (empty($_SESSION['auth'])) return header('Location: /');
 
         $products = Product::findAll();
+        $comments = Comment::byCurrentUser(User::getId());
+        $ratings = Rating::byCurrentUser(User::getId());
 
-        //Add to one array all user activities
-        $userActivities = [];
-        $userActivities['comments'] = Comment::byCurrentUser(User::getId());;
-        $userActivities['ratings'] = Rating::byCurrentUser(User::getId());;
+        foreach ($products as $product){
+            foreach ($comments as $comment){
+                if ($comment->product_id === $product->id){
+                    $product->comments = $comment;
+                }
+            }
+
+            foreach ($ratings as $rating){
+                if ($rating->product_id === $product->id){
+                    $product->ratings = $rating;
+                }
+            }
+        }
 
         $this->view->title = 'Products page';
         $this->view->products = $products;
-        $this->view->userActivities = $userActivities;
         $this->view->display(__DIR__ . '/../../templates/products.php');
     }
 

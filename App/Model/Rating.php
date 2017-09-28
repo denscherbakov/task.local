@@ -21,7 +21,7 @@ class Rating extends Model
             [
                 'product_id' => $data['product_id'],
                 'user_id' => $data['user_id'],
-                'rate' => $data['rating']
+                'rate' => $data['rate']
             ]);
         return $data;
     }

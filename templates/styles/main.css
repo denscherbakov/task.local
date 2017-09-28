@@ -1,6 +1,13 @@
-.login-form {
+.login-form, .auth-error, .page-error {
     margin: 0 auto;
     width: 30%;
+}
+
+.page-error {
+    margin-top: 200px;
+}
+
+.auth-block {
     padding-top: 200px;
 }
 

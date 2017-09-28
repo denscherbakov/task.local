@@ -19,9 +19,11 @@ class AuthController extends Controller
         $user = new User();
 
         if ($user->auth($login, $pass) === false) {
+            $_SESSION['auth_error'] = 'Wrong login or password';
             return header('Location: /');
         };
 
+        unset($_SESSION['auth_error']);
         return header('Location: /product');
     }
 

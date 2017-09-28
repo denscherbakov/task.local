@@ -5,7 +5,7 @@
 </head>
 <body>
     <div class="container">
-        <h3>Page is not found</h3>
+        <p class="alert alert-danger page-error">Page is not found</p>
     </div>
 </body>
 </html>
