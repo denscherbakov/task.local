@@ -6,7 +6,7 @@
 <body>
     <div class="container auth-block">
 
-        <?php if ($_SESSION['auth_error']): ?>
+        <?php if (isset($_SESSION['auth_error'])): ?>
             <p class="alert alert-danger auth-error">
                     <?= $_SESSION['auth_error']; ?>
             </p>
